@@ -1,5 +1,3 @@
 # Final-Project
 Airbnb Singapore
-
-
-![](images/airbnb2.jpg)
+<img src="images/airbnb1.jpg" width="850">
