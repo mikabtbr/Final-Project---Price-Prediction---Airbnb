@@ -1,5 +1,6 @@
-# Final-Project
-Airbnb Singapore
+# Final-Project - 
+# SINGAPORE AIRBNB - PRICE PREDICTION 
+
 <img src="images/airbnb1.jpg" width="850">
 
 
