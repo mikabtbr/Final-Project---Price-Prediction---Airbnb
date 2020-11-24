@@ -6,4 +6,4 @@
 
 Dataset link source :
 - http://insideairbnb.com/get-the-data.html
-- Time :(June 2020)
+- Time : June 2020
