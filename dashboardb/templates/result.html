@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+{% extends 'index.html' %} {% block content %}
+<center>
+    <br>
+    <div class="container h1 bg-dark text-white">
+        <b>BORROWER'S <br> REPAYMENT CAPABILITY</b>
+    </div>
+    <br>
+    <div class="container p-1 my-1 bg-secondary text-white">
+
+        <b>Region of Singapore : </b> {{neighbourhood_group}}<br>
+        <b>Type of Room : </b> {{room_type}}<br>
+        <b>Nights to stay : </b> {{minimum_nights}}<br>
+        <b>Listing total reviews : </b> {{number_of_reviews}}<br>
+        <b>Host's listing count: </b> {{calculated_host_listings_count}}<br>
+        <b>Total Days listing is available : </b> {{availability_365}}<br>
+        <b>Superhost status : </b> {{host_is_superhost}}<br>
+        <b>Type of Property: </b> {{property_type}}<br>
+        <b>Total Bedrooms: </b> {{bedrooms}}<br>
+        <b>Total Beds : </b> {{beds}}<br>
+        <b>Total Guests: </b> {{guests_included}}<br>
+        <b>Rating :Total </b> {{review_scores_rating}}<br>
+        <b>Instant Bookable : </b> {{instant_bookable}}<br>
+        <b>Total Bathrooms: </b> {{bathrooms}}<br>
+        <b>Security Deposit : </b> {{security_deposit}}<br>
+        <b>Cleaning Fee : </b> {{cleaning_fee}}<br>
+        <b>Total Amenities : </b> {{len_amenities}}<br>
+        <b>Budget choice : </b> {{budget_dorm}}<br>
+
+    </div>
+    <br>
+    <div class="container h2 bg-dark text-white">
+        <b>Your Expected Price is  : </b> <br>
+        {{pred}}
+    </div>
+
+    <hr>
+    <a href="/prediction" target="_self">
+        <button style="background-color: rgb(0,71,110); color: whitesmoke" class="btn btn-light">
+            Predict Again
+        </button>
+    </a>
+    <a href="/" target="_self">
+        <button style="background-color: rgb(0,71,110); color: whitesmoke" class="btn btn-light">
+            Back to Home
+        </button>
+    </a>
+</center>
+
+{% endblock %}

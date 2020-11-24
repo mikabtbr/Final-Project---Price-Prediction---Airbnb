@@ -1,0 +1,193 @@
+{% extends 'index.html' %} {% block content %}
+<center>
+        <br>
+        <h3><b>TRANSACTION HISTORY</b></h3>
+        <p>This is some transaction history of the borrowers when borrowing the money in LendingClub.</p>
+        <div class='table-bordered' style='overflow: auto; height: 400px; width: 75%; margin:0 auto'>
+            <table>
+            {% for table in tables %}
+                {{titles[loop.index]}}
+                {{ table|safe }}
+            {% endfor %}
+            </table>
+        </div>
+    
+        <form method="POST" action="http://localhost:5000/result">
+            <br>
+            <h3><b>CHECK THE BORROWER'S REPAYMENT CAPABILITY</b></h3>
+            <p>Please insert the borrower's information below.</p>
+            <br>           
+                <div class="input-group mb-3" style="width: 500px">
+                <span class="input-group-text" style="width: 500px">Region</span>
+                <select name="neighbourhood_group" style="width: 250px" class="form-control" required="required">
+                <option value="North Region">North Region</option>
+                <option value="Central Region">Central Region</option>
+                <option value="North-East Region">North-East Region</option>
+                <option value="East Region">East Region</option>
+                <option value="West Region">West Region</option>
+                <option disabled selected hidden>Central/North/East/North-East/West Region</option>
+
+            </select>
+
+            </div>
+                <div class="input-group mb-3" style="width: 500px">
+                <span class="input-group-text" style="width: 500px">Type of Room</span>
+                <select name="room_type" style="width: 250px" class="form-control" required="required">
+                <option value="Hotel room">Hotel room</option>
+                <option value="Private room">Private room</option>
+                <option value="Entire home/apt">Entire home/apt</option>
+                <option value="Shared room">Shared room</option>
+                <option disabled selected hidden>e.g Hotel room, or Private room, or Shared room</option>
+
+            </select>
+
+            </div>
+            
+            <div class="input-group mb-3" style="width: 500px">
+                <span class="input-group-text" style="width: 500px">Minimum nights</span>
+                <input type="number" name="minimum_nights" step="0.01" 
+                min="0" max="1000" style="width: 500px" id="minimum_nights" 
+                class="form-control" required=True placeholder="e.g. 0, or 1 , or 10"/>
+            </select>
+            </div>
+
+
+            <div class="input-group mb-3" style="width: 500px">
+                <span class="input-group-text" style="width: 500px">Total Host's Reviews</span>
+                <input type="number" name="number_of_reviews" step="0.01" 
+                min="0" max="1000" style="width: 500px" id="number_of_reviews" 
+                class="form-control" required=True placeholder="e.g. 50, or 70, or 100"/>
+            </select>
+            </div>
+
+            <div class="input-group mb-3" style="width: 500px">
+                <span class="input-group-text" style="width: 500px">Total Host's Listings</span>
+                <input type="number" name="calculated_host_listings_count" step="0.01" 
+                min="0" max="1000" style="width: 500px" id="calculated_host_listings_count" 
+                class="form-control" required=True placeholder="e.g. 1, or 5, or 10"/>
+            </select>
+            </div>
+            <div class="input-group mb-3" style="width: 500px">
+                <span class="input-group-text" style="width: 500px">Total Days Available</span>
+                <input type="number" name="availability_365" step="0.01" 
+                min="0" max="1000" style="width: 500px" id="availability_365" 
+                class="form-control" required=True placeholder="e.g. 1, or 5, or 10"/>
+            </select>
+            </div>
+            <div class="input-group mb-3" style="width: 500px">
+                <span class="input-group-text" style="width: 500px">Superhost Status</span>
+                <select name="host_is_superhost" style="width: 250px" class="form-control" required="required">
+                <option value="t">Yes</option>
+                <option value="f">No</option>
+                <option disabled selected hidden>e.g Yes or No</option>
+
+            </select>
+            </div>
+            <div class="input-group mb-3" style="width: 500px">
+                <span class="input-group-text" style="width: 500px">Type of Property</span>
+                <select name="property_type" style="width: 250px" class="form-control" required="required">
+                <option value="Apartment">Apartment</option>
+                <option value="Condominium">Condominium</option>
+                <option value="House">House</option>
+                <option value="Hostel">Hostel</option>
+                <option value="Hotel">Hotel</option>
+                <option value="Boutique Hotel">Boutique Hotel</option>
+                <option value="Other">Other.</option>
+                <option disabled selected hidden>e.g Apartment, or Condominium or etc. </option>
+
+            </select>
+
+            <div class="input-group mb-3" style="width: 500px">
+                <span class="input-group-text" style="width: 500px">Total Bedroom</span>
+                <input type="number" name="bedrooms" step="0.01" 
+                min="0" max="50" style="width: 500px" id="bedrooms" 
+                class="form-control" required=True placeholder="e.g. 0, or 5, or 10"/>
+            </select>
+            </div>
+            <div class="input-group mb-3" style="width: 500px">
+                <span class="input-group-text" style="width: 500px">Total Beds</span>
+                <input type="number" name="beds" step="0.01" 
+                min="0" max="50" style="width: 500px" id="beds" 
+                class="form-control" required=True placeholder="e.g. 0, or 5, or 10"/>
+            </select>
+            </div>
+            <div class="input-group mb-3" style="width: 500px">
+                <span class="input-group-text" style="width: 500px">Total Guests</span>
+                <input type="number" name="guests_included" step="0.01" 
+                min="0" max="50" style="width: 500px" id="guests_included" 
+                class="form-control" required=True placeholder="e.g. 0, or 5, or 10"/>
+            </select>
+            </div>
+
+            <div class="input-group mb-3" style="width: 500px">
+                <span class="input-group-text" style="width: 500px">Host's Review Score Rating</span>
+                <input type="number" name="review_scores_rating" step="0.01" 
+                min="0" max="1000" style="width: 500px" id="review_scores_rating" 
+                class="form-control" required=True placeholder="e.g. 0, or 50, or 100"/>
+            </select>
+            </div>
+            <div class="input-group mb-3" style="width: 500px">
+                <span class="input-group-text" style="width: 500px">Instant Bookable</span>
+                <select name="instant_bookable" style="width: 250px" class="form-control" required="required">
+                <option value="Instant booking">Instant Booking</option>
+                <option value="Need Approval">Need Approval</option>
+                <option disabled selected hidden>e.g Yes or No</option>
+
+            </select>
+            </div>
+            <div class="input-group mb-3" style="width: 500px">
+                <span class="input-group-text" style="width: 500px">Total Bathrooms</span>
+                <input type="number" name="bathrooms" step="0.01" 
+                min="0" max="50" style="width: 500px" id="bathrooms" 
+                class="form-control" required=True placeholder="e.g. 0, or 50, or 100"/>
+            </select>
+            </div>
+
+
+                <div class="input-group mb-3" style="width: 500px">
+                <span class="input-group-text" style="width: 500px">Security Deposit</span>
+                <input type="number" name="security_deposit" step="0.01" 
+                min="0" max="1000" style="width: 500px" id="security_deposit" 
+                class="form-control" required=True placeholder="e.g. 0, or 50, or 100"/>
+            </select>
+            </div>
+
+            <div class="input-group mb-3" style="width: 500px">
+                <span class="input-group-text" style="width: 500px">Cleaning Fee</span>
+                <input type="number" name="cleaning_fee" step="0.01" 
+                min="0" max="1000" style="width: 500px" id="cleaning_fee" 
+                class="form-control" required=True placeholder="e.g. 0, or 50, or 100"/>
+            </select>
+            </div>
+            
+            <div class="input-group mb-3" style="width: 500px">
+                <span class="input-group-text" style="width: 500px">Total Amenities Provided</span>
+                <input type="number" name="len_amenities" step="0.01" 
+                min="0" max="100" style="width: 500px" id="len_amenities" 
+                class="form-control" required=True placeholder="e.g. 0, or 50, or 100"/>
+            </select>
+            </div>
+
+            <div class="input-group mb-3" style="width: 500px">
+                <span class="input-group-text" style="width: 500px">Budget Dormitory</span>
+                <input type="number" name="budget_dorm" step="0.01" 
+                min="0" max="1" style="width: 500px" id="budget_dorm" 
+                class="form-control" required=True placeholder="0 or 1"/>
+            
+
+            </select>
+            </div>
+            <!-- <div class="input-group mb-3" style="width: 500px">
+                <span class="input-group-text" style="width: 500px">Budget Dormitory</span>
+                <select name="budget_dorm" style="width: 250px" class="form-control" required="required">
+                <option value="1">Budget Dorm. Option</option>
+                <option value="0">Expensive </option>
+                <option disabled selected hidden>e.g Budget or Expensive</option> -->
+
+            <button type="submit" style="background-color: rgb(4,122,133); color: whitesmoke" class="btn btn-info btn-lg">Predict Repayment Capability</button>
+        </form>
+        <br>
+    </center>
+    {% endblock %}
+
+</html>
