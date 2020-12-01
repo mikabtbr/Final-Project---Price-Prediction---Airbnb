@@ -7,6 +7,10 @@
     <title>AIRBNB | Customer Services</title>
     <!-- agar dapat menggunakan class bootstrap secara offline -->
     <link rel="stylesheet" href="../static/bootstrap.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round|Raleway">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">  
 
     <!-- untuk dapat memunculkan chart dari plotly -->
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
@@ -21,41 +25,293 @@
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
 </head>
-
+<style>
+body{
+	background: #eeeeee;
+	font-family: 'Varela Round', sans-serif;
+}
+.form-inline {
+	display: inline-block;
+}
+.navbar-header.col {
+	padding: 0 !important;
+}	
+.navbar {		
+	background: #fff;
+	padding-left: 16px;
+	padding-right: 16px;
+	border-bottom: 1px solid #d6d6d6;
+	box-shadow: 0 0 4px rgba(0,0,0,.1);
+}
+.nav-link {
+	margin: 0 5px;
+}
+.nav-link img {
+	border-radius: 50%;
+	width: 36px;
+	height: 36px;
+	margin: -8px 0;
+	float: left;
+	margin-right: 10px;
+}
+.navbar .navbar-brand {
+	color: #555;
+	padding-left: 0;
+	font-size: 20px;
+	padding-right: 50px;
+	font-family: 'Raleway', sans-serif;
+}
+.navbar .navbar-brand b {
+	font-weight: bold;
+	color: #eb5844;
+}
+.navbar .navbar-nav a:hover, .navbar .navbar-nav a:focus {
+	color: #f08373 !important;
+}
+.navbar .navbar-nav a.active, .navbar .navbar-nav a.active:hover {
+	color: #eb5844 !important;
+	background: transparent !important;
+}
+.search-box {
+	position: relative;
+}	
+.search-box input.form-control {		
+	padding-right: 35px;
+	border-radius: 0;
+	padding-left: 0;
+	border-width: 0 0 1px 0;
+	box-shadow: none;
+}
+.search-box input.form-control:focus {		
+	border-color: #f08373;		
+}
+.search-box .input-group-text {
+	min-width: 35px;
+	border: none;
+	background: transparent;
+	position: absolute;
+	right: 0;
+	z-index: 9;
+	padding: 7px 0 7px 7px;
+	height: 100%;
+}
+.search-box i {
+	color: #a0a5b1;
+	font-size: 19px;
+}
+.navbar .nav-item i {
+	font-size: 18px;
+}
+.navbar .dropdown-item i {
+	font-size: 16px;
+	min-width: 22px;
+}
+.navbar .nav-item.show > a {
+	background: none !important;
+}
+.navbar .dropdown-menu {
+	border-radius: 1px;
+	border-color: #e5e5e5;
+	box-shadow: 0 2px 8px rgba(0,0,0,.05);
+}
+.navbar .dropdown-menu a {
+	color: #777;
+	padding: 8px 20px;
+	line-height: normal;
+	font-size: 15px;
+}
+.navbar .navbar-form {
+	margin-right: 0;
+	margin-left: 0;
+	border: 0;
+}
+@media (min-width: 992px){
+	.form-inline .input-group {
+		width: 250px;
+		margin-right: 30px;
+	}
+}
+@media (max-width: 991px){
+	.form-inline {
+		display: block;
+		margin-bottom: 10px;
+		margin-top: 0;
+	}
+	.input-group {
+		width: 100%;
+	}
+}
+</style>
 <body>
-    <h1 class="text-center text-capitalize display-4 my-5">
-            <b>Airbnb Price Predictions</b>
-    </h1>
+    <div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel">
+        <ol class="carousel-indicators">
+          <li data-target="#carouselExampleCaptions" data-slide-to="0" class="active"></li>
+          <li data-target="#carouselExampleCaptions" data-slide-to="1"></li>
+          <li data-target="#carouselExampleCaptions" data-slide-to="2"></li>
+          <li data-target="#carouselExampleCaptions" data-slide-to="3"></li>
+          <li data-target="#carouselExampleCaptions" data-slide-to="4"></li>
+        </ol>
+        <div class="carousel-inner" style="height: 75em; object-fit: cover ;">
+
+          <div class="carousel-item active">
+            <img src="https://www.yieldplanet.com/pl/wp-content/uploads/sites/2/2019/10/Airbnb-promotions-available-in-Channel-Manager-.jpg?auto=compress&cs=tinysrgb&dpr=1&h=1500&w=2500" class="d-block w-100" alt="...">
+            <div class="carousel-caption d-none d-md-block">
+              <h5><b>AirBnB</b></h5>
+              <p>Work Hard, Travel Easy</p>
+              
+            </div>
+          </div>
+          <div class="carousel-item">
+            <img src="https://media.timeout.com/images/105476529/image.jpg"class="d-block w-100" alt="...">
+            <div class="carousel-caption d-none d-md-block">
+           
+            </div>
+          </div>
+          <div class="carousel-item">
+            <img src="https://news.cgtn.com/news/2020-06-12/SIA-allows-visitors-from-Australia-New-Zealand-via-Changi-Airport-Rg0lm3kS8E/img/256c23d5b5354c76b3e0da376593a80d/256c23d5b5354c76b3e0da376593a80d.jpeg?auto=compress&cs=tinysrgb&dpr=1&h=1500&w=2500" class="d-block w-100" alt="...">
+            <div class="carousel-caption d-none d-md-block">
     
-    <img src = "https://www.youtravel.com.au/wp-content/uploads/2017/05/airbnb.jpg" alt = 'homepage' widht = 800 height="500" class = 'rounded mx-auto d-block'>
-    <br>
-    <br>
-    <p class = "text-center display-5 my-1">
-        Thank you for purchasing our subscribtion service! Since 2007, we’ve been bringing borrowers and investors together, 
-        transforming the way people access credit.
-        <br>
-        Over the last 10 years, we've helped millions of people take control of their debt, 
-        grow their small businesses, and invest for the future.
-        <br>
-        In this premium feature, you will get more insights about lending activities in LendingClub.
-        <br>
-        Also, you can predict the borrower's repayment capability whether they will be charged off or fully paid based on their information so you can minimize the risk of your investment.
-        <br>
-        Feel free to play it around the graphs and try our newest "Check the Borrower" feature just made for you.
-    </p>
-    <br>
-    <ul class="nav nav-pills nav-fill">
+            </div>
+          </div>
+          <div class="carousel-item">
+            <img src="https://www.8days.sg/image/12076618/16x9/1920/1080/e036156357a55047f406348adeff6e68/iY/01--hero-image--light-up-with-bvlgari-at-ion-orchard.jpg" class="d-block w-100" alt="...">
+            <div class="carousel-caption d-none d-md-block">
+            
+            </div>
+          </div>
+          <div class="carousel-item">
+            <img src="https://i.pinimg.com/originals/e8/72/38/e872385b141a58d623fd89a45e201acf.jpg" class="d-block w-100" alt="...">
+            <div class="carousel-caption d-none d-md-block">
+         
+            </div>
+          </div>     
+        </div>
+        <a class="carousel-control-prev" href="#carouselExampleCaptions" role="button" data-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#carouselExampleCaptions" role="button" data-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="sr-only">Next</span>
+        </a>
+      </div>
+
+      <nav class="navbar navbar-expand-lg navbar-light">
+        <a class="navbar-brand" href="#">Air<b>BnB</b></a>  		
+        <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <!-- Collection of nav links, forms, and other content for toggling -->
+        <div id="navbarCollapse" class="collapse navbar-collapse justify-content-start">
+            <div class="navbar-nav">
+                <a href="{{url_for('index')}}" class="nav-item nav-link">Home</a>
+                <a href="{{url_for('prediction')}}" class="nav-item nav-link">Prediction</a>			
+               	
+                    </div>
+                </div>
+            </div>
+            
+                <a href="https://www.linkedin.com/in/mikabtbr/" class="nav-item nav-link"><i class="fa fa-linkedin"></i></a>
+                <a href="https://github.com/mikabtbr" class="nav-item nav-link"><i class="fa fa-github"></i></a>
+                <a href="https://www.instagram.com/mikabtbr/" class="nav-item nav-link"><i class="fa fa-instagram"></i></a>
+            </div>		
+        </div>
+    </nav>
+
+      <!-- <nav class="navbar navbar-fixed-top navbar-light navbar-expand-sm
+      navbar-template">
+      <a class="navbar-brand" href="#">AirBnB</a>
+      <div class="d-flex flex-row order-2 order-sm-3">
+          <ul class="navbar-nav flex-row">
+              <li class="nav-item"><a class="nav-link px-2" href="#"><i class="fa fa-facebook"></i></a></li>
+          </ul>
+      </div>
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+     <div class="icon-bar">
+        <a href="#" class="facebook"><i class="fa fa-facebook"></i></a>
+        <a href="#" class="twitter"><i class="fa fa-twitter"></i></a>
+        <a href="#" class="google"><i class="fa fa-google"></i></a>
+        <a href="#" class="linkedin"><i class="fa fa-linkedin"></i></a>
+        <a href="#" class="youtube"><i class="fa fa-youtube"></i></a>
+      </div> -->
+
+
+      <!-- <nav class="sticky-top">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark" style="height: 6em; padding: 0 7.5em;">
+            <a class="navbar-brand" href="{{url_for('index')}}">
+                <img src="https://assets.stickpng.com/images/580b57fcd9996e24bc43c513.png" height="75em" alt="">
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarResponsive">
+        <span class="navbar-toggler-icon">
+        </span>
+    </button>
+</nav> -->
+    <!-- <nav>
+    <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="left">
+            <li><a href="#"> HOME </a></li>
+            <li><a href="#"> PREDICTION </a></li>
+        </ul>
+        <ul class="right">
+            <li><a href="#"><i class="fa fa-github"></i></a></li>
+            <li><a href="#"><i class="fa fa-instagram"></i></a></li>
+            <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+        </ul>
+    </nav> 
+    </div>
+        </nav>-->
+      
+
+
+             <!-- <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button> -->
+            <!-- <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="left">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{url_for('index')}}">Home<span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{url_for('prediction')}}">Prediction</a>
+                    </li>
+                     
+                </ul>  -->
+                <!-- <div class="Logo"><a href="#"><img src="https://assets.stickpng.com/images/580b57fcd9996e24bc43c513.png" height="75em"></a>
+                </div>
+                <nav>
+                    <ul>
+                        <li><a href="#"> Home</a></li>
+                        <li><a href="#"> Prediction</a></li>
+                    </ul>
+                </nav>
+                <ul class="right">
+                  <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                  <li><a href="#"><i class="fa fa-github"></i></a></li>
+                  <li><a href="#"><i class="fa fa-instagram"></i></a></li>
+                </ul>
+
+            </div>
+        </nav>
+    </nav>
+
         
+    </ul> -->
+    
+    <!-- <ul class="nav nav-pills">
+            
         <li class="nav-item font-weight-bold">
-            <a class="nav-link text-dark lead border" href="{{url_for('index')}}">HOME</a>
+            <a class="nav-link text-dark" href="{{url_for('index')}}">HOME</a>
         </li>
         <li class="nav-item font-weight-bold">
-            <a class="nav-link text-dark lead border" href="{{url_for('prediction')}}">PREDICTION</a>
+            <a class="nav-link text-dark" href="{{url_for('prediction')}}">PREDICTION</a>
         </li>
 
         
-    </ul>
-
+    </ul> -->
+<!-- CONNECT -->
 
     {% block content %} {% endblock %}
 

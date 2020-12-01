@@ -53,7 +53,7 @@ def category_plot(
         layout = go.Layout(
             title=title,
             xaxis=dict(title=cat_x),
-            yaxis=dict(title='person'),
+            yaxis=dict(title=cat_y),
             # boxmode group digunakan berfungsi untuk mengelompokkan box berdasarkan hue
             boxmode = 'group'
         )
@@ -104,10 +104,10 @@ def cat_fn(nav):
     # saat klik menu navigasi
     if nav == 'True':
         cat_plot = 'histplot'
-        cat_x = 'grade'
-        cat_y = 'int_rate'
+        cat_x = 'property_type'
+        cat_y = 'bedrooms'
         estimator = 'count'
-        hue = 'loan_status'
+        hue = 'room_type'
     
     # saat memilih value dari form
     else:
@@ -123,15 +123,14 @@ def cat_fn(nav):
     
     # Saat estimator == 'count', dropdown menu sumbu Y menjadi disabled dan memberikan nilai None
     if cat_y == None:
-        cat_y = 'int_rate'
+        cat_y = 'bedrooms'
 
     # Dropdown menu
     list_plot = [('histplot', 'Count Plot'), ('boxplot', 'Box Plot') ]
-    list_x = [('property_type', 'Property type')]
-    list_y = [('bedrooms', 'bedrooms')]
+    list_x = [('property_type', 'Property type'),('neighbourhood_group', 'Neighbourhood Region'),('neighbourhood','neighbourhood'),('room_type','Room type')]
+    list_y = [('bedrooms', 'bedrooms'),('price', 'Price'),('bathrooms','bathrooms'),('number_of_reviews','Total Reviews'),('review_scores_rating', 'Review Rating'),('cleaning_fee','cleaning fee'),('beds', 'Total Bed'),('guests_included', 'Total Guests')]
     list_est = [('count', 'Count'), ('avg', 'Average'), ('max', 'Max'), ('min', 'Min')]
-    list_hue = [('room_type','Room Type')]
-    
+    list_hue = [('room_type','Room Type'), ('neighbourhood_group', 'Neighbourhood Region', 'instant_bookable','Booking Status'),('host_is_superhost', 'Superhost Status')]
     plot = category_plot(cat_plot, cat_x, cat_y, estimator, hue)
     
     return render_template('category.html',plot=plot,focus_plot='histplot',focus_x='loan_status',focus_estimator='count',focus_hue='loan_status',drop_plot=list_plot,drop_x=list_x,drop_y=list_y,drop_estimator=list_est,drop_hue=list_hue)
@@ -175,7 +174,7 @@ def result():
         budget_dorm = int(input['budget_dorm'])
 
         
-        model = joblib.load('airbnbmodelrftuned')
+        model = joblib.load('AIRBNBMODELFINAL')
         data_pred = pd.DataFrame(data =[[neighbourhood_group,room_type,minimum_nights,number_of_reviews,calculated_host_listings_count,availability_365,host_is_superhost,property_type,bedrooms,beds,guests_included,review_scores_rating,instant_bookable,bathrooms,security_deposit,cleaning_fee,len_amenities,budget_dorm]],
 								columns = ['neighbourhood_group','room_type','minimum_nights','number_of_reviews',
                                 'calculated_host_listings_count','availability_365','host_is_superhost',
@@ -210,5 +209,5 @@ def result():
         )
 
 if __name__ == '__main__':
-    model = joblib.load('airbnbmodelrftuned')
+    model = joblib.load('AIRBNBMODELFINAL')
     app.run(debug=True)

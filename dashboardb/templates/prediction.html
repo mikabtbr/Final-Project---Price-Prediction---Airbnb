@@ -1,8 +1,8 @@
 {% extends 'index.html' %} {% block content %}
 <center>
         <br>
-        <h3><b>TRANSACTION HISTORY</b></h3>
-        <p>This is some transaction history of the borrowers when borrowing the money in LendingClub.</p>
+        <h3><b>Airbnb Dataset</b></h3>
+        <p>This is host listing in Singapore Airbnb until June 2020.</p>
         <div class='table-bordered' style='overflow: auto; height: 400px; width: 75%; margin:0 auto'>
             <table>
             {% for table in tables %}
@@ -14,8 +14,8 @@
     
         <form method="POST" action="http://localhost:5000/result">
             <br>
-            <h3><b>CHECK THE BORROWER'S REPAYMENT CAPABILITY</b></h3>
-            <p>Please insert the borrower's information below.</p>
+            <h3><b>Do you want to rent or join as host airbnb?</b></h3>
+            <p>Please make sure you know the value of your property</p>
             <br>           
                 <div class="input-group mb-3" style="width: 500px">
                 <span class="input-group-text" style="width: 500px">Region</span>
@@ -184,7 +184,7 @@
                 <option value="0">Expensive </option>
                 <option disabled selected hidden>e.g Budget or Expensive</option> -->
 
-            <button type="submit" style="background-color: rgb(4,122,133); color: whitesmoke" class="btn btn-info btn-lg">Predict Repayment Capability</button>
+            <button type="submit" style="background-color: rgb(4,122,133); color: whitesmoke" class="btn btn-info btn-lg">Submit</button>
         </form>
         <br>
     </center>
